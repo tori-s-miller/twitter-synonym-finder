@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OriginalTweet from './components/OriginalTweet';
 import './App.css';
 
+
 function App() {
+const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
+
+  const [data, setData] = useState({ hits: [] });
+
+  // const [tweetArray]
 
   useEffect(() => {
-    fetch('https://api.datamuse.com/words?ml=')
-    .then(res => res.json())
-    .then(items => setItems(items))
-    .catch(console.log(err))
+    async function fetchData() {
+      const result = await axios(
+        CORS_URL + 'https://api.datamuse.com/words?ml='
+      );
+  
+      setData(result.data);
+      console.log('result.data:', result.data)
+    }
+    fetchData();
   }, [])
 
   return (
