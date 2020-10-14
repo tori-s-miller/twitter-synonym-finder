@@ -46,18 +46,23 @@ export default function OriginalTweet() {
 //      Make the field value available to the submit handler
 {console.log('Original Tweet rendered')}
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log('handleSubmit ran');
+        setTextArray([text])
+        /* need to figure out how to push 'text' to 'textArray' */
+        console.log('textArray:', textArray)
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     value={text}
                     onChange={e => handleText(e.target.value)}
                     />
-                <input 
-                    type="submit"
-                    onSubmit={() => setTextArray(text)}
-                    />
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
