@@ -1,44 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default class OriginalTweet extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: '',
-            textArray: []
-        }
-
-        this.handleText = this.handleText.bind(this);
+        this.handleOldText = this.handleOldText.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('handleSubmit ran')
-        this.setState({textArray: this.state.text.split(' ')})
+        this.props.onFormSubmit();
     }
 
-
-    // handleText(e) {
-    //     this.setState({
-    //         text: e.target.value
-    //     })
-    // }
-
-    handleText(e) {
+    handleOldText(e) {
         this.props.onTextChange(e.target.value);     
     }
 
     render() {
-        const text = this.props.text;
+        const oldText = this.props.oldText;
         {console.log('OriginalTweet this.props:', this.props)}
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                 <input 
                     type="text"
-                    value={text}
-                    onChange={this.handleText}
+                    value={oldText}
+                    onChange={this.handleOldText}
                     />
                     <button type="submit">Submit</button>
                 </form>      

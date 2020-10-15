@@ -1,27 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OriginalTweet from './components/OriginalTweet';
+import NewTweet from './components/NewTweet';
 import './App.css';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleText = this.handleText.bind(this);
+    this.handleOldText = this.handleOldText.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       error: null,
       isLoaded: false,
       items: [],
-      text: '',
-      textArray: []
+      oldText: '',
+      oldTextArray: [],
+      synonyms: {
+        nouns: [],
+        verbs: [],
+        adjectives: [],
+        adverbs: []
+      }
     }
   }
 
-  handleText(text) {
+  /*
+  
+  take each item in oldTextArray, place at the end of the api string
+  push those results to this.state.synonyms
+
+  iterate over tags, if the value is equal to "n", push to nouns, etc
+
+  */
+
+  handleOldText(oldText) {
         this.setState({
-            text
+          oldText
         })
     }
+  
+  handleSubmit() {
+    this.setState({oldTextArray: this.state.oldText.split(' ')})
+  }
 
   componentDidMount() {
     fetch('https://cors-anywhere.herokuapp.com/' + 'https://api.datamuse.com/words?ml=work')
@@ -58,7 +79,7 @@ export default class App extends React.Component {
 //     fetchData();
 //   }, [])
   render() {
-    const text = this.state.text;
+    const oldText = this.state.oldText;
     console.log('App this.state:', this.state)
     return (
       <div className="App">
@@ -66,7 +87,8 @@ export default class App extends React.Component {
       <p>Add your Tweet to the Original Tweet box to search for synonyms. 
           Select a new synonym, choose "Next", and send your new Tweet to 
           the world when you're done!</p>
-      <OriginalTweet text={text} onTextChange={this.handleText} />
+      <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} />
+      <NewTweet />
       </div>
     );
   }
