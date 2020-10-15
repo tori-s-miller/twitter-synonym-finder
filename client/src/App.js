@@ -10,12 +10,14 @@ export default class App extends React.Component {
     super(props);
     this.handleOldText = this.handleOldText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.findCurrentWord = this.findCurrentWord.bind(this);
     this.state = {
       error: null,
       isLoaded: false,
       items: [],
       oldText: '',
       oldTextArray: [],
+      currentWord: '',
       synonyms: {
         nouns: [],
         verbs: [],
@@ -27,10 +29,15 @@ export default class App extends React.Component {
 
   /*
   
-  take each item in oldTextArray, place at the end of the api string
+  take each item in oldTextArray, push to this.state.currentWord, 
+  (need some sort of counter) and place 
+  at the end of the api string
+
   push those results to this.state.synonyms
 
   iterate over tags, if the value is equal to "n", push to nouns, etc
+
+  create "View Nouns", "View Adjectives" etc components
 
   */
 
@@ -42,6 +49,11 @@ export default class App extends React.Component {
   
   handleSubmit() {
     this.setState({oldTextArray: this.state.oldText.split(' ')})
+  }
+
+  findCurrentWord() {
+    /* start at position zero */
+    /* need a "go to next word" button to increment counter */
   }
 
   componentDidMount() {
