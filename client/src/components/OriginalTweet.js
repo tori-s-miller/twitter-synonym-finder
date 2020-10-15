@@ -19,20 +19,25 @@ export default class OriginalTweet extends React.Component {
     }
 
 
+    // handleText(e) {
+    //     this.setState({
+    //         text: e.target.value
+    //     })
+    // }
+
     handleText(e) {
-        this.setState({
-            text: e.target.value
-        })
+        this.props.onTextChange(e.target.value);     
     }
 
     render() {
-        {console.log('this.state:', this.state)}
+        const text = this.props.text;
+        {console.log('OriginalTweet this.props:', this.props)}
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                 <input 
                     type="text"
-                    value={this.state.text}
+                    value={text}
                     onChange={this.handleText}
                     />
                     <button type="submit">Submit</button>
