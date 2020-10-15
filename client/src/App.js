@@ -52,6 +52,7 @@ export default class App extends React.Component {
   }
 
   findCurrentWord() {
+    this.state.oldTextArray.map(word => console.log('word:', word))
     /* start at position zero */
     /* need a "go to next word" button to increment counter */
   }
