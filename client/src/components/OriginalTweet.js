@@ -17,11 +17,11 @@ export default class OriginalTweet extends React.Component {
     }
 
     componentDidMount() {
-        console.log('ORIGINALTWEET componentDidMount ran')
+        // console.log('ORIGINALTWEET componentDidMount ran')
     }
 
     render() {
-        {console.log('OT this.props:', this.props)}
+        // {console.log('OT this.props:', this.props)}
         const oldText = this.props.oldText;
         return (
             <div>

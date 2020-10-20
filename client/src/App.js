@@ -1,9 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import OriginalTweet from './components/OriginalTweet';
 import NewTweet from './components/NewTweet';
 import Synonyms from './components/Synonyms';
-import Word from './components/Word';
 import './App.css';
 
 
@@ -18,7 +16,7 @@ export default class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      counter: 0,
+      counter: -1,
       currentWord: '',
       items: [],
       oldText: '',
@@ -58,6 +56,11 @@ export default class App extends React.Component {
   
   handleSubmit() {
     this.setState({oldTextArray: this.state.oldText.split(' ')});
+    if(this.state.counter === -1) {
+      this.setState({
+        counter: this.state.counter + 1
+      })
+    }
   }
 
   chooseWord() {
@@ -72,8 +75,7 @@ export default class App extends React.Component {
     let oldTextArray = this.state.oldTextArray;
     let currentPosition = this.state.counter;
     let currentWord = oldTextArray[currentPosition];
-    console.log('currentWord:', currentWord);
-    this.setState({currentWord: currentWord})
+    // console.log('currentWord:', currentWord);
     // this.getDataFromApi();
 
     /* start at position zero */
@@ -107,11 +109,6 @@ export default class App extends React.Component {
   //   //   )
   // }
 
-  /*
-   function that takes currentWord and plugs it into the api
-   the api results will be separated by word type
-   when a new word is selected, it will be pushed to newTextArray
-  */
 
   /* 
   infinite loop triggered by fetch
@@ -166,20 +163,23 @@ export default class App extends React.Component {
 //   }, [])
   render() {
     const oldText = this.state.oldText;
-    const word = this.state.currentWord;
-    console.log('App this.state:', this.state)
-    console.log('App word:', word)
+    const counter = this.state.counter;
     return (
       <div className="App">
       <h1>Twitter Synonym Finder</h1>
       <p>Add your Tweet to the Original Tweet box to search for synonyms. 
           Select a new synonym, choose "Next", and send your new Tweet to 
           the world when you're done!</p>
-      {this.findCurrentWord()}
+      {/* {this.findCurrentWord()} */}
       <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} />
       <NewTweet />
-      <Word currentWord={word} />
-      <Synonyms chooseWord={this.chooseWord} />
+      <Synonyms
+        key={counter}
+        findCurrentWord={this.findCurrentWord} 
+        oldTextArray={this.state.oldTextArray}
+        currentPosition={this.state.counter}
+        chooseWord={this.chooseWord}
+       />
       </div>
     );
   }
