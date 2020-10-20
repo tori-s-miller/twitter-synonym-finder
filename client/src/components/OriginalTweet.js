@@ -16,9 +16,13 @@ export default class OriginalTweet extends React.Component {
         this.props.onTextChange(e.target.value);     
     }
 
+    componentDidMount() {
+        console.log('ORIGINALTWEET componentDidMount ran')
+    }
+
     render() {
+        {console.log('OT this.props:', this.props)}
         const oldText = this.props.oldText;
-        {console.log('OriginalTweet this.props:', this.props)}
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
