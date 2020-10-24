@@ -166,10 +166,12 @@ export default class App extends React.Component {
     const counter = this.state.counter;
     return (
       <div className="App">
-      <h1>Twitter Synonym Finder</h1>
-      <p>Add your Tweet to the Original Tweet box to search for synonyms. 
-          Select a new synonym, choose "Next", and send your new Tweet to 
-          the world when you're done!</p>
+        <div className="intro-container">
+          <h1>Twitter Synonym Finder</h1>
+          <p>Add your Tweet to the Original Tweet box to search for synonyms. 
+            Select a new synonym, choose "Next", and send your new Tweet to 
+            the world when you're done!</p>
+        </div>
       {/* {this.findCurrentWord()} */}
       <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} />
       <NewTweet />

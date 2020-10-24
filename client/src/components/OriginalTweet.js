@@ -24,15 +24,22 @@ export default class OriginalTweet extends React.Component {
         // {console.log('OT this.props:', this.props)}
         const oldText = this.props.oldText;
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                <input 
+            <div className="original-tweet-container">
+                <div className="form-container">
+                <form className="tweet-form" onSubmit={this.handleSubmit}>
+                <label>ORIGINAL TWEET</label>
+                <textarea
+                    size="280"
+                    maxlength="280"
+                    rows="6"
                     type="text"
                     value={oldText}
                     onChange={this.handleOldText}
                     />
-                    <button type="submit">Submit</button>
-                </form>      
+                    <button type="submit" className="original-tweet-submit">Search For Synonyms</button>
+                </form>  
+                </div>
+
             </div>
         )
     }

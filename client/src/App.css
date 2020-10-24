@@ -1,0 +1,115 @@
+/* APP */
+
+html {
+    background: repeat url(https://i.imgur.com/PQlxCOb.png);
+}
+
+.App {
+    border: 1px solid red;
+}
+
+.intro-container {
+    border: 2px solid green;
+    width: 650px;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    color: #62D68C;
+    font-size: 2.75em;
+    margin: 0 auto;
+}
+
+.intro-container > p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: light;
+    color: #2B213B;
+    font-size: 1.25em;
+}
+
+
+/* ORIGINAL TWEET */
+
+.original-tweet-container {
+    border: 2px solid blue;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.form-container {
+    display: block;
+    text-align: center;
+}
+
+.tweet-form {
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: light; 
+    font-size: 1.25em;
+    color: #4D3AA7;
+}
+
+textarea {
+    border: 1px solid #4D3AA7;
+    border-radius: 10px;
+}
+
+.tweet-form > textarea {
+    width: 500px;
+}
+
+.original-tweet-submit {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #D3C2FF;
+    background-color: #290096;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+
+
+/* NEW TWEET */
+
+.new-tweet-container {
+    border: 2px solid orange;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 25px; 
+}
+
+.tweet-button, .start-over-button {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.tweet-button {
+    color: #fff;
+    background-color: #009DFA;
+}
+
+.start-over-button {
+    color: #290096;
+    background-color: #D3C2FF;
+}
