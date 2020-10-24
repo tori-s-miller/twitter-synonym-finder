@@ -57,6 +57,18 @@ export default class Word extends React.Component {
             <div>
                 {this.findCurrentWord()}
                 <button onClick={this.chooseWord}>Choose this word</button>
+                <div className="nouns">
+                  <h2>Nouns</h2>
+                </div>
+                <div className="verbs">
+                  <h2>Verbs</h2>
+                </div>
+                <div className="adjectives">
+                  <h2>Adjectives</h2>
+                </div>
+                <div className="adverbs">
+                  <h2>Adverbs</h2>
+                </div>
             </div>
         )
     }
