@@ -30,7 +30,7 @@ export default class OriginalTweet extends React.Component {
                 <label>ORIGINAL TWEET</label>
                 <textarea
                     size="280"
-                    maxlength="280"
+                    maxLength="280"
                     rows="6"
                     type="text"
                     value={oldText}

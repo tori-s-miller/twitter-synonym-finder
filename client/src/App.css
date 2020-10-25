@@ -113,3 +113,10 @@ textarea {
     color: #290096;
     background-color: #D3C2FF;
 }
+
+
+/* SYNONYMS */
+
+.nouns, .verbs, .adjectives, .adverbs {
+    display: inline-block;
+}

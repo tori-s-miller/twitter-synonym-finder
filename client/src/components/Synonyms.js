@@ -5,15 +5,19 @@ export default class Word extends React.Component {
         super(props);
         this.findCurrentWord = this.findCurrentWord.bind(this);
         this.chooseWord = this.chooseWord.bind(this);
+        this.state = {
+          isLoaded: false,
+          words: []
+        }
     }
 
     findCurrentWord() {
         let oldTextArray = this.props.oldTextArray;
         let currentPosition = this.props.currentPosition;
         let currentWord = oldTextArray[currentPosition];
-        console.log('Word oldTextArray:', oldTextArray);
-        console.log('Word currentPosition:', currentPosition);
-        console.log('Word currentWord:', currentWord);
+        console.log('Synonyms oldTextArray:', oldTextArray);
+        console.log('Synonyms currentPosition:', currentPosition);
+        console.log('Synonyms currentWord:', currentWord);
     }
 
     chooseWord(e) {
@@ -22,7 +26,7 @@ export default class Word extends React.Component {
     }
 
     componentDidMount() {
-        console.log('WORD componentDidMount ran')
+        console.log('Synonyms componentDidMount ran')
         let oldTextArray = this.props.oldTextArray;
         let currentPosition = this.props.currentPosition;
         let currentWord = oldTextArray[currentPosition];
@@ -33,10 +37,10 @@ export default class Word extends React.Component {
           .then(res => res.json())
           .then(
             (result) => {
-              console.log('Word result:', result)
+              console.log('Synonyms result from API:', result)
               this.setState({
                 isLoaded: true,
-                items: result.items
+                words: result
               });
             },
             (error) => {
@@ -46,28 +50,36 @@ export default class Word extends React.Component {
               })
             }
           )
+          {console.log('Synonyms this.state at end of ComponentDidMount:', this.state)}
       }
 
       /* REMOUNT A REACT COMONENT WHEN A PROP CHANGES */
 
     render() {
-        {console.log('Word this.props:', this.props)}
-        {console.log('Word this.state:', this.state)}
+        {console.log('Synonyms this.props:', this.props)}
+        {console.log('Synonyms this.state:', this.state)}
         return (
             <div>
                 {this.findCurrentWord()}
+                <p>Choose replacement to replace word.</p>
                 <button onClick={this.chooseWord}>Choose this word</button>
-                <div className="nouns">
-                  <h2>Nouns</h2>
-                </div>
-                <div className="verbs">
-                  <h2>Verbs</h2>
-                </div>
-                <div className="adjectives">
-                  <h2>Adjectives</h2>
-                </div>
-                <div className="adverbs">
-                  <h2>Adverbs</h2>
+                <button>Keep Original Word</button>
+                <div className="synonyms-container">
+                  <div className="nouns">
+                    <h2>Nouns</h2>
+                    {this.state.words.map((word, index) => (
+                      <li key={index}>{this.state.word}</li>
+                    ))}
+                  </div>
+                  <div className="verbs">
+                    <h2>Verbs</h2>
+                  </div>
+                  <div className="adjectives">
+                    <h2>Adjectives</h2>
+                  </div>
+                  <div className="adverbs">
+                    <h2>Adverbs</h2>
+                  </div>
                 </div>
             </div>
         )
