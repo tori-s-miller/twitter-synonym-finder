@@ -13,6 +13,10 @@ export default class App extends React.Component {
     this.findCurrentWord = this.findCurrentWord.bind(this);
     // this.getDataFromApi = this.getDataFromApi.bind(this);
     this.chooseWord = this.chooseWord.bind(this);
+    this.setNouns = this.setNouns.bind(this);
+    this.setVerbs = this.setVerbs.bind(this);
+    this.setAdjectives = this.setAdjectives.bind(this);
+    this.setAdverbs = this.setAdverbs.bind(this);
     this.state = {
       error: null,
       isLoaded: false,
@@ -27,26 +31,13 @@ export default class App extends React.Component {
         verbs: [],
         adjectives: [],
         adverbs: []
-      }
+      },
+      currentWordType: null
     }
 
     
 
   }
-
-  /*
-  
-  take each item in oldTextArray, push to this.state.currentWord, 
-  (need some sort of counter) and place 
-  at the end of the api string
-
-  push those results to this.state.synonyms
-
-  iterate over tags, if the value is equal to "n", push to nouns, etc
-
-  create "View Nouns", "View Adjectives" etc components
-
-  */
 
   handleOldText(oldText) {
         this.setState({
@@ -80,6 +71,30 @@ export default class App extends React.Component {
 
     /* start at position zero */
     /* need a "go to next word" button to increment counter */
+  }
+
+  setNouns() {
+    this.setState({
+      currentWordType: 'nouns'
+    })
+  }
+
+  setVerbs() {
+    this.setState({
+      currentWordType: 'verbs'
+    })
+  }
+
+  setAdjectives() {
+    this.setState({
+      currentWordType: 'adjectives'
+    })
+  }
+
+  setAdverbs() {
+    this.setState({
+      currentWordType: 'adverbs'
+    })
   }
 
   // getDataFromApi() {
@@ -181,6 +196,11 @@ export default class App extends React.Component {
         oldTextArray={this.state.oldTextArray}
         currentPosition={this.state.counter}
         chooseWord={this.chooseWord}
+        setNouns={this.setNouns}
+        setVerbs={this.setVerbs}
+        setAdjectives={this.setAdjectives}
+        setAdverbs={this.setAdverbs}
+        currentWordType={this.state.currentWordType}
        />
       </div>
     );

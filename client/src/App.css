@@ -119,4 +119,6 @@ textarea {
 
 .nouns, .verbs, .adjectives, .adverbs {
     display: inline-block;
+    vertical-align: top;
+    border: 1px solid red;
 }

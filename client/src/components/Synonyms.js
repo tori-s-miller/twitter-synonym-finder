@@ -5,6 +5,10 @@ export default class Word extends React.Component {
         super(props);
         this.findCurrentWord = this.findCurrentWord.bind(this);
         this.chooseWord = this.chooseWord.bind(this);
+        this.setNouns = this.setNouns.bind(this);
+        this.setVerbs = this.setVerbs.bind(this);
+        this.setAdjectives = this.setAdjectives.bind(this);
+        this.setAdverbs = this.setAdverbs.bind(this);
         this.state = {
           isLoaded: false,
           words: []
@@ -23,6 +27,22 @@ export default class Word extends React.Component {
     chooseWord(e) {
         e.preventDefault();
         this.props.chooseWord();
+    }
+
+    setNouns() {
+      this.props.setNouns();
+    }
+
+    setVerbs() {
+      this.props.setVerbs();
+    }
+
+    setAdjectives() {
+      this.props.setAdjectives();
+    }
+
+    setAdverbs() {
+      this.props.setAdverbs();
     }
 
     componentDidMount() {
@@ -61,24 +81,38 @@ export default class Word extends React.Component {
         return (
             <div>
                 {this.findCurrentWord()}
+                <p>What word should replace (current word)?</p>
                 <p>Choose replacement to replace word.</p>
                 <button onClick={this.chooseWord}>Choose this word</button>
                 <button>Keep Original Word</button>
                 <div className="synonyms-container">
                   <div className="nouns">
-                    <h2>Nouns</h2>
-                    {this.state.words.map((word, index) => (
-                      <li key={index}>{this.state.word}</li>
-                    ))}
+                    <h2 onClick={this.setNouns}>Nouns</h2>
+                    {this.props.currentWordType === 'nouns' && this.state.words.map((word, index) => (
+                      word.tags.includes('n') && <li key={index}>word: {word.word}</li>
+                      )
+                    )}
                   </div>
                   <div className="verbs">
-                    <h2>Verbs</h2>
+                    <h2 onClick={this.setVerbs}>Verbs</h2>
+                    {this.props.currentWordType === 'verbs' && this.state.words.map((word, index) => (
+                        word.tags.includes('v') && <li key={index}>{word.word}</li>
+                      )
+                    )}
                   </div>
                   <div className="adjectives">
-                    <h2>Adjectives</h2>
+                    <h2 onClick={this.setAdjectives}>Adjectives</h2>
+                    {this.props.currentWordType === 'adjectives' && this.state.words.map((word, index) => (
+                      word.tags.includes('adj') && <li key={index}>word: {word.word}</li>
+                      )
+                    )}
                   </div>
                   <div className="adverbs">
-                    <h2>Adverbs</h2>
+                    <h2 onClick={this.setAdverbs}>Adverbs</h2>
+                    {this.props.currentWordType === 'adverbs' && this.state.words.map((word, index) => (
+                      word.tags.includes('adv') && <li key={index}>word: {word.word}</li>
+                      )
+                    )}
                   </div>
                 </div>
             </div>
