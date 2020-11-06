@@ -13,6 +13,7 @@ export default class App extends React.Component {
     this.findCurrentWord = this.findCurrentWord.bind(this);
     // this.getDataFromApi = this.getDataFromApi.bind(this);
     this.chooseWord = this.chooseWord.bind(this);
+    this.handleInputClick = this.handleInputClick.bind(this);
     this.setNouns = this.setNouns.bind(this);
     this.setVerbs = this.setVerbs.bind(this);
     this.setAdjectives = this.setAdjectives.bind(this);
@@ -25,6 +26,7 @@ export default class App extends React.Component {
       items: [],
       oldText: '',
       oldTextArray: [],
+      newTextArray: [],
       currentWord: '',
       synonyms: {
         nouns: [],
@@ -32,7 +34,8 @@ export default class App extends React.Component {
         adjectives: [],
         adverbs: []
       },
-      currentWordType: null
+      currentWordType: null,
+      clickedWord: null
     }
 
     
@@ -49,28 +52,47 @@ export default class App extends React.Component {
     this.setState({oldTextArray: this.state.oldText.split(' ')});
     if(this.state.counter === -1) {
       this.setState({
-        counter: this.state.counter + 1
+        counter: this.state.counter + 1,
+        currentWordType: 'nouns'
       })
     }
   }
 
   chooseWord() {
     console.log('chooseWord ran in App')
-    console.log('this.state.counter:', this.state.counter)
+    console.log('this.state.clickedWord:', this.state.clickedWord)
+    const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
     this.setState({
-      counter: this.state.counter + 1
+      counter: this.state.counter + 1,
+      clickedWord: null,
+      newTextArray: this.state.newTextArray
     })
+    // console.log('chooseWord this.state.newTextArray:', this.state.newTextArray)
   }
 
   findCurrentWord() {
     let oldTextArray = this.state.oldTextArray;
     let currentPosition = this.state.counter;
     let currentWord = oldTextArray[currentPosition];
-    // console.log('currentWord:', currentWord);
+    console.log('findCurrentWord() currentWord:', currentWord);
     // this.getDataFromApi();
 
     /* start at position zero */
     /* need a "go to next word" button to increment counter */
+  }
+
+  handleInputClick(e) {
+    // e.preventDefault();
+    const event = e.target.value;
+    console.log('handleInputClick e.target:', e.target)
+    console.log('handleInputClick event:', event);
+    if(event !== undefined) {
+      console.log('event !== undefined:', event !== undefined)
+      this.setState({
+        clickedWord: event
+      })
+    }
+    console.log('handleInputClick this.state:', this.state)
   }
 
   setNouns() {
@@ -97,85 +119,6 @@ export default class App extends React.Component {
     })
   }
 
-  // getDataFromApi() {
-  //   let oldTextArray = this.state.oldTextArray;
-  //   let currentPosition = this.state.counter;
-  //   let currentWord = oldTextArray[currentPosition];
-  //   console.log('getDataFromApi this.state:', this.state);
-  //   const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
-  //   const DATAMUSE_SEARCH_URL = CORS_URL + 'https://api.datamuse.com/words?ml=';
-  //   console.log('https://api.datamuse.com/words?ml= + currentWord:', `https://api.datamuse.com/words?ml=${currentWord}`)
-  //   // fetch(DATAMUSE_SEARCH_URL)
-  //   //   .then(res => res.json())
-  //   //   .then(
-  //   //     (result) => {
-  //   //       console.log('DATAMUSE_SEARCH result:', result)
-  //   //       this.setState({
-  //   //         isLoaded: true,
-  //   //         items: result.items
-  //   //       });
-  //   //     },
-  //   //     (error) => {
-  //   //       this.setState({
-  //   //         isLoaded: true,
-  //   //         error
-  //   //       })
-  //   //     }
-  //   //   )
-  // }
-
-
-  /* 
-  infinite loop triggered by fetch
-  fetch must be called in "componentDidMount"
-  can only be called once, so maybe try functional hook component? and pass state up?
-  
-  */
-
-  
-
-  componentDidMount() {
-    console.log('APP componentDidMount ran')
-    let oldTextArray = this.state.oldTextArray;
-    let currentPosition = this.state.counter;
-    let currentWord = oldTextArray[currentPosition];
-    const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
-    const DATAMUSE_SEARCH_URL = CORS_URL + `https://api.datamuse.com/words?ml=${currentWord}`;
-
-    fetch(DATAMUSE_SEARCH_URL)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log('result:', result)
-          this.setState({
-            isLoaded: true,
-            items: result.items
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
-  }
-
-// const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
-
-//   const [data, setData] = useState({ hits: [] });
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       const result = await axios(
-//         CORS_URL + 'https://api.datamuse.com/words?ml='
-//       );
-  
-//       setData(result.data);
-//       console.log('result.data:', result.data)
-//     }
-//     fetchData();
-//   }, [])
   render() {
     const oldText = this.state.oldText;
     const counter = this.state.counter;
@@ -188,8 +131,8 @@ export default class App extends React.Component {
             the world when you're done!</p>
         </div>
       {/* {this.findCurrentWord()} */}
-      <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} />
-      <NewTweet />
+      <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} counter={counter} oldTextArray={this.state.oldTextArray} />
+      <NewTweet newTextArray={this.state.newTextArray} />
       <Synonyms
         key={counter}
         findCurrentWord={this.findCurrentWord} 
@@ -201,6 +144,8 @@ export default class App extends React.Component {
         setAdjectives={this.setAdjectives}
         setAdverbs={this.setAdverbs}
         currentWordType={this.state.currentWordType}
+        handleInputClick={this.handleInputClick}
+        clickedWord={this.state.clickedWord}
        />
       </div>
     );

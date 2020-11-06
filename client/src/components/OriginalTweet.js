@@ -23,6 +23,11 @@ export default class OriginalTweet extends React.Component {
     render() {
         // {console.log('OT this.props:', this.props)}
         const oldText = this.props.oldText;
+        const oldTextArray = this.props.oldTextArray;
+        const counter = this.props.counter;
+        const currentWord = oldTextArray[counter];
+        console.log('OriginalTweet currentWord:', currentWord)
+        console.log('Original Tweet oldText:', oldText)
         return (
             <div className="original-tweet-container">
                 <div className="form-container">
