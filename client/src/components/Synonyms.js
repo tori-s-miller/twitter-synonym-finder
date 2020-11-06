@@ -109,6 +109,7 @@ export default class Synonyms extends React.Component {
         return (
             <div className="synonyms-container">
                 {this.findCurrentWord()}
+                {this.props.oldTextArray.length === 0 && <p>Synonym choices will appear here.</p>}
                 {this.props.oldTextArray.length > 0 && this.props.clickedWord === null && <p>What word should replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>?</p>}
                 {this.props.oldTextArray.length > 0 && this.props.clickedWord !== null && <p>Choose <span className="strong-word">{this.props.clickedWord}</span> to replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>.</p>}
                 <div className="button-container">
@@ -119,7 +120,7 @@ export default class Synonyms extends React.Component {
                 </div>
                 <div className="synonyms-sub-container">
                   <div className="nouns synonym-container">
-                    <h2 onClick={this.setNouns}>NOUNS</h2>
+                    <h2 onClick={this.setNouns} className={this.props.currentWordType === 'nouns' ? 'synonym-active' : 'synonym-inactive'}>NOUNS</h2>
                     <ul>
                       {this.props.currentWordType === 'nouns' && this.state.words.map((word, index) => (
                         word.tags !== undefined && word.tags.includes('n') && (
@@ -132,7 +133,7 @@ export default class Synonyms extends React.Component {
                     </ul>
                   </div>
                   <div className="verbs synonym-container">
-                    <h2 onClick={this.setVerbs}>VERBS</h2>
+                    <h2 onClick={this.setVerbs} className={this.props.currentWordType === 'verbs' ? 'synonym-active' : 'synonym-inactive'}>VERBS</h2>
                     <ul>
                       {this.props.currentWordType === 'verbs' && this.state.words.map((word, index) => (
                         word.tags !== undefined && word.tags.includes('v') && (
@@ -145,7 +146,7 @@ export default class Synonyms extends React.Component {
                     </ul>
                   </div>
                   <div className="adjectives synonym-container">
-                    <h2 onClick={this.setAdjectives}>ADJECTIVES</h2>
+                    <h2 onClick={this.setAdjectives} className={this.props.currentWordType === 'adjectives' ? 'synonym-active' : 'synonym-inactive'}>ADJECTIVES</h2>
                     <ul>
                     {this.props.currentWordType === 'adjectives' && this.state.words.map((word, index) => (
                       word.tags !== undefined && word.tags.includes('adj') && (
@@ -158,7 +159,7 @@ export default class Synonyms extends React.Component {
                     </ul>
                   </div>
                   <div className="adverbs synonym-container">
-                    <h2 onClick={this.setAdverbs}>ADVERBS</h2>
+                    <h2 onClick={this.setAdverbs} className={this.props.currentWordType === 'adverbs' ? 'synonym-active' : 'synonym-inactive'}>ADVERBS</h2>
                     {this.props.currentWordType === 'adverbs' && this.state.words.map((word, index) => (
                       word.tags !== undefined && word.tags.includes('adv') && (
                         <div key={index} className="container">

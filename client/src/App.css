@@ -68,17 +68,17 @@ textarea {
 }
 
 .original-tweet-submit {
-    display: block;
-    margin: 0 auto;
-    margin-top: 5px;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    color: #D3C2FF;
-    background-color: #290096;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #D3C2FF;
+  background-color: #290096;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
 }
 
 
@@ -90,6 +90,10 @@ textarea {
     width: 50%;
     margin: 0 auto;
     margin-top: 25px; 
+}
+
+.new-tweet-buttons-container {
+  display: block;
 }
 
 .tweet-button, .start-over-button {
@@ -129,6 +133,7 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
+  margin-right: 10px;
 }
 
 .keep-original-button {
@@ -143,6 +148,7 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
+  margin-left: 10px;
 }
 
 .button-inactive {
@@ -184,15 +190,29 @@ textarea {
   width: 20%;
 }
 
+.synonym-container > h2 {
+  cursor: pointer;
+}
+
 .synonym-container > ul {
   padding: 0;
 }
 
 .nouns, .verbs, .adjectives, .adverbs {
   font-family: 'Roboto Condensed', sans-serif;
-  display: inline-block;
-  vertical-align: top;
+  /* display: inline-block;
+  vertical-align: top; */
   border: 1px solid red;
+}
+
+.synonym-active {
+  font-weight: 700;
+  color: #4D3AA7;
+}
+
+.synonym-inactive {
+  font-weight: 300;
+  color: #2B213B;
 }
 
  /* radio button css start */
@@ -200,24 +220,45 @@ textarea {
   cursor: pointer;
   display: block;
   margin: 20px;
-  font-size: 30px;
-  color: #FFB88C;
+  font-size: 1em;
+  font-weight: 700;
+  color: #290096;
   position: relative;
+  background-color: #F0F0F0;
+  padding: 8px;
+  border-radius: 15px;
 }
   .label::before {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    border: 1px solid #e6e6e6;
+    background-color: #CABEDE;
     margin-right: 10px;
     vertical-align: middle;
     content: '';
     position: relative;
   }
 
-  .active {
-    border: 3px solid blueviolet;
+  .label:hover {
+    background-color: #E3E3E3;
+    transition: background-color 1s;
+  }
+
+  .active, .active:hover {
+    background-color: #62D68C;
+  }
+
+  .active::before {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #290096;
+    margin-right: 10px;
+    vertical-align: middle;
+    content: '';
+    position: relative;
   }
   
    /* &.active {

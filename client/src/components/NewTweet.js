@@ -21,8 +21,10 @@ export default class NewTweet extends React.Component {
                         type="text"
                         value={newText}
                         />
-                        <button className="tweet-button" type="submit">Tweet</button>
-                        <button className="start-over-button" type="submit">Start Over</button>
+                        <div className="new-tweet-buttons-container">
+                            <button className="tweet-button" type="submit">Tweet</button>
+                            <button className="start-over-button" type="submit">Start Over</button>
+                        </div>
                     </form>  
                 </div>
             </div>
