@@ -10,8 +10,6 @@ export default class App extends React.Component {
     super(props);
     this.handleOldText = this.handleOldText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.findCurrentWord = this.findCurrentWord.bind(this);
-    // this.getDataFromApi = this.getDataFromApi.bind(this);
     this.chooseWord = this.chooseWord.bind(this);
     this.keepOriginalWord = this.keepOriginalWord.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
@@ -38,9 +36,6 @@ export default class App extends React.Component {
       currentWordType: null,
       clickedWord: null
     }
-
-    
-
   }
 
   handleOldText(oldText) {
@@ -60,18 +55,13 @@ export default class App extends React.Component {
   }
 
   chooseWord() {
-    console.log('chooseWord ran in App')
     const noWords = this.state.oldTextArray.length === 0;
     const nothingClicked = this.state.clickedWord === null;
     const endOfArray = this.state.oldTextArray.length === this.state.counter +1;
-    console.log('this.state.oldTextArray.length:', this.state.oldTextArray.length)
-    console.log('this.state.counter:', this.state.counter)
-    console.log('endOfArray:', endOfArray)
+
     if(noWords || nothingClicked) {
-      console.log('noWords || nothingClicked ran')
-      console.log('this.state.oldTextArray.length', this.state.oldTextArray.length, 'this.state.counter', this.state.counter)
+      console.log('create an alert')
     } else if(endOfArray) {
-      console.log('its the end of array')
       const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
       this.setState({
         currentWordType: null,
@@ -80,7 +70,6 @@ export default class App extends React.Component {
         newTextArray: this.state.newTextArray
       })
     } else {
-      console.log('else ran')
       const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
       this.setState({
         counter: this.state.counter + 1,
@@ -91,8 +80,6 @@ export default class App extends React.Component {
   }
 
   keepOriginalWord() {
-    console.log('keepOriginalWord this.state:', this.state)
-    console.log('original word:', this.state.oldTextArray[this.state.counter])
     const newArrayItem = this.state.newTextArray.push(this.state.oldTextArray[this.state.counter])
     this.setState({
       counter: this.state.counter + 1,
@@ -100,29 +87,13 @@ export default class App extends React.Component {
     })
   }
 
-  findCurrentWord() {
-    let oldTextArray = this.state.oldTextArray;
-    let currentPosition = this.state.counter;
-    let currentWord = oldTextArray[currentPosition];
-    console.log('findCurrentWord() currentWord:', currentWord);
-    // this.getDataFromApi();
-
-    /* start at position zero */
-    /* need a "go to next word" button to increment counter */
-  }
-
   handleInputClick(e) {
-    // e.preventDefault();
     const event = e.target.value;
-    console.log('handleInputClick e.target:', e.target)
-    console.log('handleInputClick event:', event);
     if(event !== undefined) {
-      console.log('event !== undefined:', event !== undefined)
       this.setState({
         clickedWord: event
       })
     }
-    console.log('handleInputClick this.state:', this.state)
   }
 
   setNouns() {
@@ -160,14 +131,18 @@ export default class App extends React.Component {
             Select a new synonym, choose "Next", and send your new Tweet to 
             the world when you're done!</p>
         </div>
-      {/* {this.findCurrentWord()} */}
-      <OriginalTweet oldText={oldText} onTextChange={this.handleOldText} onFormSubmit={this.handleSubmit} counter={counter} oldTextArray={this.state.oldTextArray} />
+      <OriginalTweet 
+        oldText={oldText} 
+        onTextChange={this.handleOldText} 
+        onFormSubmit={this.handleSubmit} 
+        counter={counter} 
+        oldTextArray={this.state.oldTextArray} 
+      />
       <NewTweet newTextArray={this.state.newTextArray} />
       <Synonyms
         key={counter}
-        findCurrentWord={this.findCurrentWord} 
         oldTextArray={this.state.oldTextArray}
-        currentPosition={this.state.counter}
+        currentPosition={counter}
         chooseWord={this.chooseWord}
         keepOriginalWord={this.keepOriginalWord}
         setNouns={this.setNouns}
