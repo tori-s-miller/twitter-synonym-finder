@@ -82,6 +82,7 @@ export default class App extends React.Component {
   keepOriginalWord() {
     const newArrayItem = this.state.newTextArray.push(this.state.oldTextArray[this.state.counter])
     this.setState({
+      clickedWord: null,
       counter: this.state.counter + 1,
       newTextArray: this.state.newTextArray
     })
