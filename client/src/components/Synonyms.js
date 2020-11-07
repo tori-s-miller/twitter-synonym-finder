@@ -34,6 +34,7 @@ export default class Synonyms extends React.Component {
         super(props);
         this.findCurrentWord = this.findCurrentWord.bind(this);
         this.chooseWord = this.chooseWord.bind(this);
+        this.keepOriginalWord = this.keepOriginalWord.bind(this);
         this.setNouns = this.setNouns.bind(this);
         this.setVerbs = this.setVerbs.bind(this);
         this.setAdjectives = this.setAdjectives.bind(this);
@@ -54,6 +55,10 @@ export default class Synonyms extends React.Component {
     chooseWord(e) {
         // e.preventDefault();
         this.props.chooseWord();
+    }
+
+    keepOriginalWord() {
+      this.props.keepOriginalWord();
     }
 
     setNouns() {
@@ -95,7 +100,6 @@ export default class Synonyms extends React.Component {
               })
             }
           )
-          {console.log('Synonyms this.state at end of ComponentDidMount:', this.state)}
       }
 
       handleChange = (e) => {
@@ -110,13 +114,15 @@ export default class Synonyms extends React.Component {
             <div className="synonyms-container">
                 {this.findCurrentWord()}
                 {this.props.oldTextArray.length === 0 && <p>Synonym choices will appear here.</p>}
-                {this.props.oldTextArray.length > 0 && this.props.clickedWord === null && <p>What word should replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>?</p>}
+                {this.props.currentPosition === this.props.oldTextArray.length && <p>You've reached the end of your Tweet.</p>}
+                {this.props.currentPosition !== this.props.oldTextArray.length && this.props.oldTextArray.length > 0 && this.props.clickedWord === null && <p>What word should replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>?</p>}
                 {this.props.oldTextArray.length > 0 && this.props.clickedWord !== null && <p>Choose <span className="strong-word">{this.props.clickedWord}</span> to replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>.</p>}
                 <div className="button-container">
                   {console.log('Synonyms this.props:', this.props)}
                 {/* className={value === clickedWord ? 'label active' : 'label'} */}
+                {console.log('this.props.oldTextArray.length', this.props.oldTextArray.length, 'this.props.currentPosition', this.props.currentPosition)}
                   <button className={this.props.oldTextArray.length === 0 || this.props.clickedWord === null || this.props.oldTextArray.length === this.props.currentPosition ? "choose-word-button button-inactive" : "choose-word-button"} onClick={this.chooseWord}>Choose this word</button>
-                  <button className="keep-original-button">Keep Original Word</button>
+                  <button className={this.props.oldTextArray.length === 0 || this.props.oldTextArray.length === this.props.currentPosition ? "keep-original-button button-inactive" : "keep-original-button"} onClick={this.keepOriginalWord}>Keep Original Word</button>
                 </div>
                 <div className="synonyms-sub-container">
                   <div className="nouns synonym-container">

@@ -13,6 +13,7 @@ export default class App extends React.Component {
     this.findCurrentWord = this.findCurrentWord.bind(this);
     // this.getDataFromApi = this.getDataFromApi.bind(this);
     this.chooseWord = this.chooseWord.bind(this);
+    this.keepOriginalWord = this.keepOriginalWord.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     this.setNouns = this.setNouns.bind(this);
     this.setVerbs = this.setVerbs.bind(this);
@@ -60,14 +61,43 @@ export default class App extends React.Component {
 
   chooseWord() {
     console.log('chooseWord ran in App')
-    console.log('this.state.clickedWord:', this.state.clickedWord)
-    const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
+    const noWords = this.state.oldTextArray.length === 0;
+    const nothingClicked = this.state.clickedWord === null;
+    const endOfArray = this.state.oldTextArray.length === this.state.counter +1;
+    console.log('this.state.oldTextArray.length:', this.state.oldTextArray.length)
+    console.log('this.state.counter:', this.state.counter)
+    console.log('endOfArray:', endOfArray)
+    if(noWords || nothingClicked) {
+      console.log('noWords || nothingClicked ran')
+      console.log('this.state.oldTextArray.length', this.state.oldTextArray.length, 'this.state.counter', this.state.counter)
+    } else if(endOfArray) {
+      console.log('its the end of array')
+      const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
+      this.setState({
+        currentWordType: null,
+        counter: this.state.counter + 1,
+        clickedWord: null,
+        newTextArray: this.state.newTextArray
+      })
+    } else {
+      console.log('else ran')
+      const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
+      this.setState({
+        counter: this.state.counter + 1,
+        clickedWord: null,
+        newTextArray: this.state.newTextArray
+      })
+    }
+  }
+
+  keepOriginalWord() {
+    console.log('keepOriginalWord this.state:', this.state)
+    console.log('original word:', this.state.oldTextArray[this.state.counter])
+    const newArrayItem = this.state.newTextArray.push(this.state.oldTextArray[this.state.counter])
     this.setState({
       counter: this.state.counter + 1,
-      clickedWord: null,
       newTextArray: this.state.newTextArray
     })
-    // console.log('chooseWord this.state.newTextArray:', this.state.newTextArray)
   }
 
   findCurrentWord() {
@@ -126,7 +156,7 @@ export default class App extends React.Component {
       <div className="App">
         <div className="intro-container">
           <h1>Twitter Synonym Finder</h1>
-          <p>Add your Tweet to the Original Tweet box to search for synonyms. 
+          <p>Add your Tweet to the Original Tweet box and choose "Search for Synonyms." 
             Select a new synonym, choose "Next", and send your new Tweet to 
             the world when you're done!</p>
         </div>
@@ -139,6 +169,7 @@ export default class App extends React.Component {
         oldTextArray={this.state.oldTextArray}
         currentPosition={this.state.counter}
         chooseWord={this.chooseWord}
+        keepOriginalWord={this.keepOriginalWord}
         setNouns={this.setNouns}
         setVerbs={this.setVerbs}
         setAdjectives={this.setAdjectives}

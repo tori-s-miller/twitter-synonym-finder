@@ -1,4 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react';
+
+// function TweetButton() {
+//     const [search, setSearch] = useState('');
+//     const newText = this.props.newTextArray.join(' ');
+//     return (
+//         <div className="tweet-button-container">
+//             <textarea 
+//                 value={search} 
+//                 onChange={e => setSearch(e.target.value)}
+//                 autoFocus
+//             ></textarea>
+//             <a className="twitter-share-button"
+//             href={`https://twitter.com/intent/tweet?text=${newText}`}
+//             data-size="large"
+//             target="_blank">
+//             Tweet</a>
+//         </div>
+//     )
+// }
 
 export default class NewTweet extends React.Component {
     constructor(props) {
@@ -7,10 +26,8 @@ export default class NewTweet extends React.Component {
     
     render() {
         const newText = this.props.newTextArray.join(' ');
-        console.log('newText:', newText)
         return (
             <div className="new-tweet-container">
-                {console.log('NewTweet this.props:', this.props)}
                 <div className="form-container">
                     <form className="tweet-form">
                     <label>NEW TWEET</label>
@@ -22,7 +39,12 @@ export default class NewTweet extends React.Component {
                         value={newText}
                         />
                         <div className="new-tweet-buttons-container">
-                            <button className="tweet-button" type="submit">Tweet</button>
+                        <a className="tweet-button"
+                            href={`https://twitter.com/intent/tweet?text=${newText}`}
+                            data-size="large"
+                            target="_blank">
+                            Tweet It</a>
+                            {/* <button className="tweet-button" type="submit">Tweet It</button> */}
                             <button className="start-over-button" type="submit">Start Over</button>
                         </div>
                     </form>  

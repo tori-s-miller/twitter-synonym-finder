@@ -104,11 +104,14 @@ textarea {
 .tweet-button {
     color: #fff;
     background-color: #009DFA;
+    margin-right: 10px;
+    text-decoration: none;
 }
 
 .start-over-button {
     color: #290096;
     background-color: #D3C2FF;
+    margin-left: 10px;
 }
 
 
@@ -146,11 +149,11 @@ textarea {
 
 .button-inactive {
   background-color: #E3E3E3;
-  color: #2B213B;
+  color: #676270;
 }
 
 .synonyms-container {
-  margin: 0 50px;
+  margin: 50px;
 }
 
 .synonyms-container > p {
@@ -173,6 +176,7 @@ textarea {
 .synonyms-sub-container {
   display: flex;
   justify-content: space-between;
+  margin: 0 50px;
 }
 
 .synonym-container {
