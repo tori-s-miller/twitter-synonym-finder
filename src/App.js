@@ -134,9 +134,7 @@ export default class App extends React.Component {
       <OriginalTweet 
         oldText={oldText} 
         onTextChange={this.handleOldText} 
-        onFormSubmit={this.handleSubmit} 
-        counter={counter} 
-        oldTextArray={this.state.oldTextArray} 
+        onFormSubmit={this.handleSubmit}
       />
       <NewTweet newTextArray={this.state.newTextArray} />
       <Synonyms
