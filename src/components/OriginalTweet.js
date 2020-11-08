@@ -27,7 +27,7 @@ export default class OriginalTweet extends React.Component {
                 <textarea
                     size="280"
                     maxLength="280"
-                    rows="6"
+                    rows="7"
                     type="text"
                     value={oldText}
                     onChange={this.handleOldText}

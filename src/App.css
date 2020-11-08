@@ -1,64 +1,86 @@
 /* APP */
 
 html {
-    background: repeat url(https://i.imgur.com/PQlxCOb.png);
+  background: repeat url(https://i.imgur.com/PQlxCOb.png);
+}
+
+.App {
+  width: 100%;
 }
 
 .intro-container {
-    width: 650px;
-    margin: 0 auto;
-    margin-top: 50px;
-    text-align: center;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
 }
 
 h1 {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: bold;
-    color: #62D68C;
-    font-size: 2.75em;
-    margin: 0 auto;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+  color: #62D68C;
+  font-size: 2.75em;
+  margin: 0 auto;
 }
 
 .intro-container > p {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: light;
-    color: #2B213B;
-    font-size: 1.25em;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: light;
+  color: #2B213B;
+  font-size: 1.25em;
+}
+
+@media (max-width: 768px) {
+  .intro-container > p {
+    font-size: 1.2em;
+    padding: 0 3%;
+  }
+}
+
+@media (max-width: 500px) {
+  .intro-container {
+    width: 100%;
+  }
+
+  .intro-container > h1 {
+    font-size: 2.25em;
+  }
+
+  .intro-container > p {
+    font-size: 1em;
+  }
 }
 
 
 /* ORIGINAL TWEET */
 
 .original-tweet-container {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 25px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 25px;
 }
 
 .form-container {
-    display: block;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
 
 .tweet-form {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 label {
-    display: block;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: light; 
-    font-size: 1.25em;
-    color: #4D3AA7;
+  display: block;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: light; 
+  font-size: 1.25em;
+  color: #4D3AA7;
 }
 
 textarea {
-    border: 1px solid #4D3AA7;
-    border-radius: 10px;
-}
-
-.tweet-form > textarea {
-    width: 500px;
+  border: 1px solid #4D3AA7;
+  border-radius: 10px;
+  width: 65%;
 }
 
 .original-tweet-submit {
@@ -74,7 +96,6 @@ textarea {
   padding: 10px 20px;
   border-radius: 20px;
 }
-
 
 
 /* NEW TWEET */
@@ -114,6 +135,31 @@ textarea {
     margin-left: 10px;
 }
 
+@media (max-width: 1024px) {
+  .original-tweet-container, .new-tweet-container {
+    width: 55%;
+  }
+
+  textarea {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .original-tweet-container, .new-tweet-container {
+    width: 70%;
+  }
+
+  textarea {
+    width: 95%;
+  }
+}
+
+@media (max-width: 500px) {
+  .original-tweet-container, .new-tweet-container {
+    width: 95%;
+  }
+}
 
 /* SYNONYMS */
 
@@ -250,3 +296,16 @@ textarea {
     content: '';
     position: relative;
   }
+
+
+/* MOBILE LAYOUT TESTING */
+
+.synonyms-sub-container {
+  border: 3px solid peru;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.synonym-container {
+  border: 1px solid blue;
+  width: 100%
+}
