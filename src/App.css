@@ -231,6 +231,7 @@ textarea {
 
 .synonym-container > h2 {
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .synonym-container > ul {
@@ -242,8 +243,9 @@ textarea {
 }
 
 .synonym-active {
-  font-weight: 700;
+  font-weight: 400;
   color: #4D3AA7;
+  transition: color .5s;
 }
 
 .synonym-inactive {
@@ -308,4 +310,28 @@ textarea {
 .synonym-container {
   border: 1px solid blue;
   width: 100%
+}
+
+@media (max-width: 1024px) {
+  .synonym-container > h2 {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+
+  .label {
+    margin-left: 10px;
+  }
+
+  .label::before {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .synonyms-sub-container {
+    border: 3px solid olivedrab;
+    display: inline-block;
+    /* grid-template-rows: 25% 25% 25% 25%; */
+  }
 }

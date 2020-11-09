@@ -98,27 +98,52 @@ export default class App extends React.Component {
   }
 
   setNouns() {
-    this.setState({
-      currentWordType: 'nouns'
-    })
+    this.state.currentWordType !== 'nouns' ? (
+      this.setState({
+        currentWordType: 'nouns'
+      })
+    ) : (
+      this.setState({
+        currentWordType: null
+      })
+    )
   }
 
   setVerbs() {
-    this.setState({
-      currentWordType: 'verbs'
-    })
+    this.state.currentWordType !== 'verbs' ? (
+      this.setState({
+        currentWordType: 'verbs'
+      })
+    ) : (
+      this.setState({
+        currentWordType: null
+      })
+    )
+    
   }
 
   setAdjectives() {
-    this.setState({
-      currentWordType: 'adjectives'
-    })
+    this.state.currentWordType !== 'adjectives' ? (
+      this.setState({
+        currentWordType: 'adjectives'
+      })
+    ) : (
+      this.setState({
+        currentWordType: null
+      })
+    )
   }
 
   setAdverbs() {
-    this.setState({
-      currentWordType: 'adverbs'
-    })
+    this.state.currentWordType !== 'adverbs' ? (
+      this.setState({
+        currentWordType: 'adverbs'
+      })
+    ) : (
+      this.setState({
+        currentWordType: null
+      })
+    )
   }
 
   render() {
