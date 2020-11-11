@@ -2,8 +2,8 @@ import React from 'react';
 
 function ListItem(props) {
   const { value, clickedWord, handleInputClick } = props;
+  
   return (
-    <div >
       <label onClick={handleInputClick} className={value === clickedWord ? 'label active' : 'label'}>{value}
         <input
         type="radio"
@@ -11,9 +11,15 @@ function ListItem(props) {
         hidden
         />
       </label>
-    </div>
   );
 }
+
+const c1Style = {
+  background: 'steelblue',
+  color: 'white',
+  padding: '1.5rem'
+}
+
   
 export default class Synonyms extends React.Component {
     constructor(props) {
@@ -27,7 +33,8 @@ export default class Synonyms extends React.Component {
         this.state = {
           isLoaded: false,
           words: [],
-          clickedWord: ''
+          clickedWord: '',
+          showListItems: false
         }
     }
 
@@ -84,9 +91,12 @@ export default class Synonyms extends React.Component {
         this.setState({ value: e.target.value });
       };
 
+
     render() {
+
         return (
             <div className="synonyms-container">
+              {/* <Toggle /> */}
                 {this.props.oldTextArray.length === 0 && <p>Synonym choices will appear here.</p>}
                 {this.props.currentPosition === this.props.oldTextArray.length && <p>You've reached the end of your Tweet.</p>}
                 {this.props.currentPosition !== this.props.oldTextArray.length && this.props.oldTextArray.length > 0 && this.props.clickedWord === null && <p>What word should replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>?</p>}
