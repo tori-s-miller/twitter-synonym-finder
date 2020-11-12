@@ -34,7 +34,7 @@ export default class App extends React.Component {
         adverbs: []
       },
       currentWordType: null,
-      clickedWord: null
+      clickedWord: null,
     }
   }
 

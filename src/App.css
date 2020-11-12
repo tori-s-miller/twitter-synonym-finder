@@ -95,6 +95,12 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
+  cursor: pointer;
+}
+
+.original-tweet-submit:active {
+  color: #daccff;
+  background-color: #3a169c;
 }
 
 
@@ -120,6 +126,7 @@ textarea {
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .tweet-button {
@@ -176,6 +183,12 @@ textarea {
   padding: 10px 20px;
   border-radius: 20px;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.choose-word-button:active {
+  color: #daccff;
+  background-color: #3a169c;
 }
 
 .keep-original-button {
@@ -191,9 +204,15 @@ textarea {
   padding: 10px 20px;
   border-radius: 20px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .button-inactive {
+  background-color: #E3E3E3;
+  color: #676270;
+}
+
+.button-inactive:active {
   background-color: #E3E3E3;
   color: #676270;
 }
@@ -222,21 +241,34 @@ textarea {
 .synonyms-sub-container {
   display: flex;
   justify-content: space-between;
-  margin: 0 50px;
+  margin: 30px 50px 0 50px;
 }
 
 .synonym-container {
   width: 20%;
 }
 
+.arrow {
+  display: inline;
+}
+
+.arrow-active {
+  transform: rotate(0.25turn);           
+  transition: transform .5s ease;
+}
+
+
 .synonym-container > h2 {
+  display: inline;
   cursor: pointer;
   margin-left: 20px;
 }
 
 .synonym-container > ul {
-  padding: 0;
+  padding: 0 0 0 10%;
 }
+
+
 
 .nouns, .verbs, .adjectives, .adverbs {
   font-family: 'Roboto Condensed', sans-serif;
@@ -251,6 +283,21 @@ textarea {
 .synonym-inactive {
   font-weight: 300;
   color: #2B213B;
+}
+
+@media (max-width: 510px) {
+  .choose-word-button, .keep-original-button {
+    font-size: .75em;
+    padding: 5px 10px;
+  }
+
+  .choose-word-button {
+    margin-right: 5px; 
+  }
+
+  .keep-original-button {
+    margin-left: 5px;
+  }
 }
 
 
@@ -318,12 +365,10 @@ textarea {
 /* MOBILE LAYOUT TESTING */
 
 .synonyms-sub-container {
-  border: 3px solid peru;
   grid-template-columns: 25% 25% 25% 25%;
 }
 
 .synonym-container {
-  border: 1px solid blue;
   width: 100%
 }
 
@@ -345,8 +390,19 @@ textarea {
 
 @media (max-width: 768px) {
   .synonyms-sub-container {
-    border: 3px solid olivedrab;
-    display: inline-block;
+    display: block;
+    margin: 0 auto;
+    width: 300px;
     /* grid-template-rows: 25% 25% 25% 25%; */
+  }
+
+  .list-item-container {
+    border-left: 3px dashed #D3C2FF;
+    padding-left: 10px;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .5s;
   }
 }
