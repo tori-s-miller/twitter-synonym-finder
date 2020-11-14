@@ -57,6 +57,14 @@ export default class App extends React.Component {
     const noWords = this.state.oldTextArray.length === 0;
     const nothingClicked = this.state.clickedWord === null;
     const endOfArray = this.state.oldTextArray.length === this.state.counter +1;
+    const counter = this.state.counter;
+    const newTextArrayLength = this.state.newTextArray.length;
+
+    if(counter === newTextArrayLength) {
+      this.setState({
+        currentWordType: null
+      })
+    }
 
     if(noWords || nothingClicked) {
       console.log('create an alert')
@@ -146,6 +154,8 @@ export default class App extends React.Component {
   }
 
   render() {
+    {console.log('this.state.counter:', this.state.counter)}
+    {console.log('this.state.newTextArray:', this.state.newTextArray)}
     const oldText = this.state.oldText;
     const counter = this.state.counter;
     return (
