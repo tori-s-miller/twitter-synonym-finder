@@ -57,7 +57,7 @@ export default class App extends React.Component {
     const noWords = this.state.oldTextArray.length === 0;
     const nothingClicked = this.state.clickedWord === null;
     const endOfArray = this.state.oldTextArray.length === this.state.counter +1;
-    const oldTextArrayLength = this.state.oldTextArray;
+    const oldTextArrayLength = this.state.oldTextArray.length;
     const newTextArrayLength = this.state.newTextArray.length;
 
     if(oldTextArrayLength === newTextArrayLength) {
