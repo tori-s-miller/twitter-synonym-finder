@@ -1,10 +1,6 @@
 import React from 'react';
 
-export default class NewTweet extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    
+export default class NewTweet extends React.Component { 
     render() {
         const newText = this.props.newTextArray.join(' ');
         return (
@@ -14,15 +10,16 @@ export default class NewTweet extends React.Component {
                     <label>NEW TWEET</label>
                     <textarea
                         size="280"
-                        maxlength="280"
+                        maxLength="280"
                         rows="7"
                         type="text"
-                        value={newText}
+                        defaultValue={newText}
                         />
                         <div className="new-tweet-buttons-container">
                         <a className="tweet-button"
                             href={`https://twitter.com/intent/tweet?text=${newText}`}
                             data-size="large"
+                            rel="noopener noreferrer"
                             target="_blank">
                             Tweet It</a>
                             <button className="start-over-button" type="submit">Start Over</button>

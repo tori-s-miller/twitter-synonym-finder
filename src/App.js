@@ -21,7 +21,6 @@ export default class App extends React.Component {
       error: null,
       isLoaded: false,
       counter: -1,
-      currentWord: '',
       items: [],
       oldText: '',
       oldTextArray: [],
@@ -58,11 +57,12 @@ export default class App extends React.Component {
     const noWords = this.state.oldTextArray.length === 0;
     const nothingClicked = this.state.clickedWord === null;
     const endOfArray = this.state.oldTextArray.length === this.state.counter +1;
+    this.state.newTextArray.push(this.state.clickedWord)
 
     if(noWords || nothingClicked) {
       console.log('create an alert')
     } else if(endOfArray) {
-      const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
+      // const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
       this.setState({
         currentWordType: null,
         counter: this.state.counter + 1,
@@ -70,7 +70,7 @@ export default class App extends React.Component {
         newTextArray: this.state.newTextArray
       })
     } else {
-      const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
+      // const newArrayItem = this.state.newTextArray.push(this.state.clickedWord)
       this.setState({
         counter: this.state.counter + 1,
         clickedWord: null,
@@ -80,7 +80,7 @@ export default class App extends React.Component {
   }
 
   keepOriginalWord() {
-    const newArrayItem = this.state.newTextArray.push(this.state.oldTextArray[this.state.counter])
+    // const newArrayItem = this.state.newTextArray.push(this.state.oldTextArray[this.state.counter])
     this.setState({
       clickedWord: null,
       counter: this.state.counter + 1,

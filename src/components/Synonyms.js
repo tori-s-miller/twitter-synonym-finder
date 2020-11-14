@@ -15,12 +15,6 @@ function ListItem(props) {
   );
 }
 
-const c1Style = {
-  background: 'steelblue',
-  color: 'white',
-  padding: '1.5rem'
-}
-
   
 export default class Synonyms extends React.Component {
     constructor(props) {
@@ -96,7 +90,6 @@ export default class Synonyms extends React.Component {
 
         return (
             <div className="synonyms-container">
-              {/* <Toggle /> */}
                 {this.props.oldTextArray.length === 0 && <p>Synonym choices will appear here.</p>}
                 {this.props.currentPosition === this.props.oldTextArray.length && <p>You've reached the end of your Tweet.</p>}
                 {this.props.currentPosition !== this.props.oldTextArray.length && this.props.oldTextArray.length > 0 && this.props.clickedWord === null && <p>What word should replace <span className="strong-word">{this.props.oldTextArray[this.props.currentPosition]}</span>?</p>}

@@ -35,7 +35,6 @@ export default class OriginalTweet extends React.Component {
                     <button type="submit" className="original-tweet-submit">Search For Synonyms</button>
                 </form>  
                 </div>
-
             </div>
         )
     }
