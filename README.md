@@ -6,7 +6,7 @@
 
 ## APPLICATION WEBSITE ##
 
-View a working prototype here:
+View a working prototype here: https://twitter-synonym-finder.herokuapp.com/
 
 ---
 
