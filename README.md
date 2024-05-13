@@ -4,15 +4,9 @@
 
 ---
 
-## APPLICATION WEBSITE ##
-
-View a working prototype here: https://twitter-synonym-finder.herokuapp.com/
-
----
-
 ## TECHNOLOGY ##
 
-This project is built with React and CSS.
+This project is built with HTML, CSS and React.
 
 ---
 
